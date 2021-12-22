@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Înregistrare</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+        <style>
+         td{
+             max-width:50%;
+         }
+         span{
+             font-size:larger;
+         }
+         #eroare{
+             text-align:center;
+             color:#cc6666;
+         }
+        </style>
+    </head>
+    <body>
+        <div id='corp'>
+            <div class="nav">
+                <a href="index.html">Pagină principală</a>
+                <a href="personaje.html">Personaje</a>
+                <a href="muzica.html">Muzică</a>
+                <a class="active" href="logare.html">Chat</a>
+            </div>
+            <h1>Înregistrare</h1>
+            <form method='POST' action='inregistrare' id='inregistrare'>
+                <table align='center'>
+                    <tr>
+                        <td colspan='2'>
+                            <input type="text" name="username" id='username' placeholder='Introduceti numele de utilizator'><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>
+                            <input name="password" type='password' id='password' placeholder='Introduceti parola'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>
+                            <input name="repeat_password" type='password' id='repeat_password' placeholder='Reintroduceti parola'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'>
+                            <input type='submit' value='Înregistrează-te'>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div id='eroare'>
+            </div>
+        </div>
+        <script>
+         document.getElementById("inregistrare").addEventListener("submit", function (event) {
+             event.preventDefault();
+             username = document.getElementById('username');
+             password = document.getElementById('password');
+             repeat_password = document.getElementById('repeat_password');
+             error = document.getElementById('eroare');
+             f = true;
+             if(username.value=="" || password.value=="" && repeat_password.value==""){
+                 f = false;
+             }
+             console.log('hello')
+             console.log(password.value.localeCompare(repeat_password.value))
+             if(password.value.localeCompare(repeat_password.value)!=0){
+                 password.value="";
+                 repeat_password.value="";;
+                 eroare.innerHTML = 'Parolele nu coincid';
+                 f = false;
+             }
+             if(f){
+                 document.getElementById("inregistrare").submit();
+             }
+         }
+         )
+        </script>
+    </body>
+</html>

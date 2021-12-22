@@ -1,0 +1,118 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>OST</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+        <style>
+         ol {
+             counter-reset: my-custom-counter 11;
+             list-style: none;
+         }
+
+         ol li {
+             counter-increment: my-custom-counter -1;
+             font-size:larger;
+         }
+
+         ol li::before {
+             content: counter(my-custom-counter) '. ';
+             font-weight: bold;
+         }
+
+         #departure{
+             color: #2B78DD;
+             font-weight:bold;
+         }
+         #masta{
+             font-weight:bold;
+             color:#B58958;
+         }
+         #playlist{
+             font-weight:bold;
+             color:#BB5E6E;
+         }
+         #impression{
+             font-weight:bold;
+             color:#01968B;
+         }
+         span.autor{
+             font-style:italic;
+         }
+         span.titlu{
+             font-size:larger;
+             text-decoration: underline;
+         }
+         .album span{
+             display: inline-block;
+             font-size:larger;
+             padding-right:50px;
+             border-bottom: 1px solid;
+         }
+        </style>
+    </head>
+    <body>
+        <div id='corp'>
+            <div class="nav">
+                <a href="index.html">Pagină principală</a>
+                <a href="personaje.html">Personaje</a>
+                <a class="active" href="muzica.html">Muzică</a>
+                <a href="logare.html">Chat</a>
+            </div>
+            <p>
+                <big><big>Coloana sonoră a serialului este alcătuită din 4 albume:</big></big>
+            </p>
+            <table align='center'>
+                <td>
+                    <div id='galerie'>
+                        <div class='album' >
+                            <img src='assets/cover_1.jpg' class='cover'>
+                            <br>
+                            <span>
+                                Masta
+                            </span>
+                        </div>
+                        <div class='album'>
+                            <img src='assets/cover_2.jpg' class='cover'>
+                            <br>
+                            <span>
+                                Departure
+                            </span>
+                        </div>
+                        <div class='album'>
+                            <img src='assets/cover_3.jpg' class='cover'>
+                            <br>
+                            <span>
+                                Playlist
+                            </span>
+                        </div>
+                        <div class='album'>
+                            <img src='assets/cover_4.jpg' class='cover'>
+                            <br>
+                            <span>
+                                Impression
+                            </span>
+                        </div>
+                    </div>
+                </td>
+            </table>
+            <hr>
+            <h1>Top 10 cele mai iconice piese:</h1>
+            <ol>
+                <li><span class='titlu'>Thank you</span> de <span class='autor'>Tsutchie</span> (<span id='playlist'>Playlist</span>)</li>
+                <li><span class='titlu'>World Without Words</span> de <span class='autor'>Nujabes</span> (<span id='impression'>Impression</span>)</li>
+                <li><span class='titlu'>Haiku</span> de <span class='autor'>Nujabes</span> (<span id='impression'>Impression</span>)</li>
+                <li><span class='titlu'>Kujaku</span> de <span class='autor'>Nujabes</span> (<span id='departure'>Departure</span>)</li>
+                <li><span class='titlu'>Who's Theme</span> de <span class='autor'>MINMI</span> (<span id='impression'>Impression</span>)</li>
+                <li><span class='titlu'>Mystline</span> de <span class='autor'>Nujabes</span> (<span id='departure'>Departure</span>)</li>
+              <li><span class='titlu'>Counting Stars</span> de <span class='autor'>Nujabes</span></li>
+              <li><span class='titlu'>Shiki no Uta</span> de <span class='autor'>Nujabes</span> (<span id='departure'>Departure</span>)</li>
+              <li><span class='titlu'>Same Ol' Thing</span> de <span class='autor'>Force Of Nature</span></li>
+              <li><span class='titlu'>Battlecry</span> de <span class='autor'>Nujabes</span> (<span id='departure'>Departure</span>)</li>
+            </ol>
+        </div>
+    </body>
+</html>

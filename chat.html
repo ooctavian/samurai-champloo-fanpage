@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <title>Chat</title>
+        <link rel="stylesheet" href="main.css">
+        <style>
+         #corp{
+             height:93%;
+         }
+         #submitbutton{
+             width:unset;
+             cursor:pointer;
+         }
+         #chatmsg{
+             width:630px;
+         }
+         #chat-text{
+             height:83%;
+             /* height:400px; */
+             overflow-y:scroll;
+             padding: 10px;
+         }
+         .mymess{
+             text-align:right;
+             float:right;
+             width:100%;
+         }
+         .mymess div{
+             margin-top:0.4em;
+             margin-bottom:0.4em;
+         }
+         .mymess .continut{
+             background-color: #77abdf;
+         }
+         .yourmess{
+             text-align:left;
+             float:left;
+             width:100%;
+         }
+         .yourmess .continut{
+             background-color: #b294bb;
+         }
+         .yourmess div{
+             margin-top:0.4em;
+             margin-bottom:0.4em;
+         }
+         .continut{
+             color:white;
+             padding:0.5em;
+             border-radius:3em;
+         }
+         input{
+             border-radius:0px;
+         }
+        </style>
+    </head>
+    <body>
+        <div id='corp'>
+            <div class="nav">
+                <a href="index.html">Pagină principală</a>
+                <a href="personaje.html">Personaje</a>
+                <a href="muzica.html">Muzică</a>
+                <a class="active" href="logare.html">Chat</a>
+            </div>
+            <div id='chat-text'>
+            </div>
+            <div id='sendmsg'>
+                <form >
+                    <span class='chatmsg'><input id='chatmsg' class='chatmsg'></span>
+                    <input type='submit' id='submitbutton' value='Trimite' >
+                </form>
+            </div>
+        </div>
+        <script>
+         function getCookie(name) {
+             const value = `; ${document.cookie}`;
+             const parts = value.split(`; ${name}=`);
+             if (parts.length === 2) return parts.pop().split(';').shift();
+         }
+         function createMyMessage(username,message){
+             return `
+            <div class='mymess'>
+                    <span>${username}</span>
+                    <div>
+                    <span class="continut">
+                        ${message}
+                    </span>
+                    </div>
+                </div>
+             `
+         }
+         function createYourMessage(username,message){
+             return `
+            <div class='yourmess'>
+                    <span>${username}</span>
+                    <div>
+                    <span class="continut">
+                        ${message}
+                    </span>
+                    </div>
+                </div>
+             `
+         }
+         let websocket = new WebSocket("wss://" + window.location.host + "/websocket");
+         let room = document.getElementById("chat-text");
+         room.scrollIntoView(false);
+         room.scrollTop = room.offsetTop;
+         let username = getCookie('username');
+         if(!username && username === "")
+             window.location.replace("logare.html");
+         websocket.addEventListener("message", function (e) {
+             let data = JSON.parse(e.data);
+             let username = getCookie('username');
+             if(username==data.username){
+                 room.innerHTML += createMyMessage(data.username,data.text)
+             }
+             else{
+                 room.innerHTML += createYourMessage(data.username,data.text)
+             }
+             console.log(room.scrollHeight - room.clientHeight)
+             room.scrollTop = room.scrollHeight - room.clientHeight;
+         });
+
+         document.getElementById("sendmsg").addEventListener("submit", function (event) {
+             event.preventDefault();
+             let text = document.getElementById("chatmsg").value;
+             websocket.send(
+                 JSON.stringify({
+                     username: username,
+                     text: text,
+                 })
+             );
+             document.getElementById("chatmsg").value = "";
+         }
+         )
+        </script>
+    </body>
+</html>
