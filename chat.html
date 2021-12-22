@@ -101,7 +101,7 @@
                 </div>
              `
          }
-         let websocket = new WebSocket("wss://" + window.location.host + "/websocket");
+         let websocket = new WebSocket("ws://" + window.location.host + "/websocket");
          let room = document.getElementById("chat-text");
          room.scrollIntoView(false);
          room.scrollTop = room.offsetTop;

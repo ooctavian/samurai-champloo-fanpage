@@ -166,13 +166,9 @@ func main() {
 	http.HandleFunc("/inregistrare", RegisterHandler)
 	http.HandleFunc("/websocket", handleConnections)
 	go handleMessages()
-	fmt.Printf("Starting server at port 8080\n")
+	fmt.Printf("Starting server at port " + port + "\n")
 	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		log.Fatal(err)
 	}
-
-	// stmt, _ := db.Prepare("INSERT INTO USER(username,password) VALUES(?,?)")
-
-	// stmt.Exec("user", "parola")
 
 }
